@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="main col-9" id="main">
+                <div class="row d-flex justify-content-around">
+                    <ul class="row1"></ul>
+                </div>
+                <div class="row d-flex justify-content-around">
+                    <ul class="row2"></ul>
+                </div>
+                <div class="row d-flex justify-content-around">
+                    <ul class="row3"></ul>
+                </div>
+                <div class="row d-flex justify-content-around">
+                    <ul class="row4"></ul>
+                </div>
+            </div>
+            <div class="aside col-3 ">
+                <div class="row d-flex justify-content-around "><button class="row btn-side" id="btn-side1">Row1</button></div>
+                <div class="row d-flex justify-content-around"><button class="row btn-side" id="btn-side2">Row2</button></div>
+                <div class="row d-flex justify-content-around"><button class="row btn-side" id="btn-side3">Row3</button></div>
+                <div class="row d-flex justify-content-around"><button class="row btn-side" id="btn-side4">Row4</button></div>
+            </div>
+        </div>
+        <div class="under row d-flex justify-content-around">
+            <button class="row btn-side" id="new-game">New Game</button>
+            <button class="row btn-side" id="oponent-move">Oponent Move</button>
+        </div>
+    </div>
+    <script src="src/constants.js"></script>
+    <script src="src/computer.js"></script>
+    <script src="src/dom.js"></script>
+    <script src="src/background.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
