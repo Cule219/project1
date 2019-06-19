@@ -35,3 +35,10 @@ li img {
     justify-content: center;
     align-items: center;
 }
+.nav{
+    color: white;
+    background: black;
+}
+.footer-copyright img{
+    height: 5vh;
+}
