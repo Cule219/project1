@@ -28,6 +28,7 @@ li {
 }   
 .btn-side  {
     height: 80%;
+    font-size: 1.6em;
     width: 250px;   
     border: 1px black solid;
     border-radius: 25px;  

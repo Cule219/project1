@@ -64,7 +64,7 @@ class Computer{
         let finalMove = this.finalMove()
         if(finalMove != false) {
             [index, count] = finalMove;
-            game.remove(index, count);//
+            game.remove(index, count, 'C');//
             return [index, count]
         }
         //random taking can make it that 10% of the time 2 elements  
@@ -97,7 +97,7 @@ class Computer{
             let a = this.testPairity();
             [index, count] = a;
         }
-        game.remove(index, count);//
+        game.remove(index, count, 'C');//
         return [index, count];//returns row and count respectably
     }
     //this just checks when two and three are uneven

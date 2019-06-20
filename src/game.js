@@ -8,14 +8,15 @@ class Game {
     setup(){
         loadMatches();
     }
+    
     //remove elements
-    remove(row, count){
+    remove(row, count, who){
         game.matches[Number(row-1)].splice(0, count);
-        this.isItDone();
+        this.isItDone(who);
     }
 
     //check for final move within game and notify the user
-    isItDone(){
+    isItDone(who){
         let count = 0;
         for(let i = 0; i < this.matches.length; i++) {
             for(let j=0; j<this.matches[i].length; j++){
@@ -23,7 +24,31 @@ class Game {
             }
         }
         if(count <= 1){
-            swal("Game done!", "...good job!");
+            if(who == 'C'){
+                Swal.fire({
+                    title: 'Good game, one more try?',
+                    width: 600,
+                    padding: '3em',
+                    background: '#fff url(/images/trees.png)',
+                    backdrop: `
+                        rgba(0,0,123,0.4)
+                        url("https://66.media.tumblr.com/tumblr_lrbu1l9BJk1qgzxcao1_250.gif")
+                        center left
+                        no-repeat
+                    `
+                }) 
+            }
+            else{
+                swal({
+                    title: "Good job"+ who +"!",
+                    text: "Game done!",
+                    icon: "success",
+                    button: "Aww yiss!",
+                })//.then(newGame());
+            }
         }
+        
+        
     }
 }
+
