@@ -8,14 +8,11 @@ class Game {
     setup(){
         loadMatches();
     }
-    
     //remove elements
     remove(row, count, who){
         game.matches[Number(row-1)].splice(0, count);
         this.isItDone(who);
     }
-
-    //check for final move within game and notify the user
     isItDone(who){
         let count = 0;
         for(let i = 0; i < this.matches.length; i++) {
@@ -24,31 +21,40 @@ class Game {
             }
         }
         if(count <= 1){
+            btnState = [false,false,false,false];
+            player2.setAttribute('disabled', 'true');
             if(who == 'C'){
                 Swal.fire({
                     title: 'Good game, one more try?',
                     width: 600,
                     padding: '3em',
-                    background: '#fff url(/images/trees.png)',
+                    background: 'rgba(200,200,200,0.6)',
                     backdrop: `
                         rgba(0,0,123,0.4)
                         url("https://66.media.tumblr.com/tumblr_lrbu1l9BJk1qgzxcao1_250.gif")
                         center left
-                        no-repeat
-                    `
-                }) 
+                        no-repeat`
+                })
+            }
+            else if(!mode){
+                swal({
+                    title:  `You won ${player1.innerHTML}!`,
+                    text:   "A reematch perhaps?",
+                    icon:   "success",
+                    button: "Aww yiss!",
+                });
             }
             else{
                 swal({
-                    title: "Good job"+ who +"!",
-                    text: "Game done!",
-                    icon: "success",
-                    button: "Aww yiss!",
-                })//.then(newGame());
+                    title:  `Player${player} won!`,
+                    text:   "Woopie",
+                    icon:   "success",
+                    button: "Congratz",
+                    background: 'url(./assets/il_794xN.874599933_kz7n.jpg)'
+                });
             }
         }
         
         
     }
 }
-
