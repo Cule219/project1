@@ -11,10 +11,8 @@ class Computer{
         this.matchesLength = [game.matches[0].length,game.matches[1].length,game.matches[2].length,game.matches[3].length];
     }
     getParity() {
-        //reseting parity and pairs after every move
         this.parity = [];
         this.pairs = [0, 0 ,0];
-        //updating parity and pairs
         for(let i = 0; i < game.matches.length; i++) {
             let currentRow = game.matches[i].length;
             let row = [];
@@ -30,11 +28,10 @@ class Computer{
             this.parity.push(row);
         }
     }   
-    //this is used by ones to find rand row and zeroes to find rand
+    
     findRow(unpairedSize, countOfMatches){
         //this needs to be changed so it returns the row and count
         unpairedSize = this.exists(unpairedSize);
-
         let i = Math.floor(Math.random()*game.matches.length);
         while(this.parity[i][Math.floor(unpairedSize/2)] == 0){
             i = Math.floor(Math.random()*game.matches.length);
@@ -58,20 +55,24 @@ class Computer{
         return unpairedSize;
     }
     makeAMove(){
-        this.getParity()
-        let finalMove = this.finalMove()
-        if(finalMove != false) return finalMove;
+        this.getParity();
+        this.getMatchesLength();
         let count, index;
         let fours  = this.pairs[2]%2;
         let twos   = this.pairs[1]%2;
         let ones   = this.pairs[0]%2;
-        // console.log('fours: ' + fours + ' twos: ' + twos + ' ones: ' + ones)
+        let finalMove = this.finalMove()
+        if(finalMove != false) {
+            [index, count] = finalMove;
+            game.remove(index, count);//
+            return [index, count]
+        }
         //random taking can make it that 10% of the time 2 elements  
         //if row has more than4 elements take 2 or more
         //addressing zeroes - random 
         if((fours+twos+ones)==0) {
             //Math.round(Math.random()*6)
-            [index, count] = this.findRow(1, 1)//rand # 
+            [index, count] = this.findRow(1, 1)//
         }
         //get these into f
         //addressing one uneven
@@ -101,10 +102,9 @@ class Computer{
     }
     //this just checks when two and three are uneven
     testPairity(){
-        this.getMatchesLength();
         let reqRowSize = Math.max(...this.matchesLength);
         let reqRow = this.matchesLength.indexOf(reqRowSize);
-        let num = 0;
+        let num = this.findRow(1, 1);
         let pairs = [];
         for(let i = 0; i <= reqRowSize; i++) {
             this.getMatchesLength();
@@ -131,35 +131,34 @@ class Computer{
                 return num;
             }
         }
-        console.log(num)
         return num;
     }
 
-
-    //have to recheck this
     finalMove(){
-        let countFull = this.getFullRows;
-        //kill f only when 2 rows are remaining
-        if(countFull.length==2 && countFull.indexOf(1) != -1){
-            console.log(countFull);
-            let finalMove = Math.max(...countFull);
-            this.findRow(finalMove)
-            return [Number(this.matchesLength.indexOf(finalMove) + 1), finalMove];
-        }
-        
-        else if(countFull.length==1 && countFull.indexOf(1) == -1){
-            let finalMove = Math.max(...this.matchesLength);
-            this.findRow((finalMove, finalMove-1));
-            console.log("congratz you won!");//fix this
-        }
-        return false;
-    }
-    getFullRows(){
+        //get count of rows that have elements
         let countFull = [];
-        this.matches.forEach(e => {
+        game.matches.forEach(e => {
             if(e.length != 0) countFull.push(e.length)
         })
-        return countFull;
+        //this just does final move if there is one non-one row left
+        if(countFull.length==1 && countFull.indexOf(1) == -1){
+            let finalMove = Math.max(...this.matchesLength);
+            return this.findRow((finalMove, finalMove-1));
+        }
+        //this checks if there is only one non one element row
+        else if(countFull.length>1 && countFull.indexOf(1) != -1){ 
+            let index = 0;
+            let finalMove = Math.max(...countFull);
+            for(let i = 0; i < countFull.length; i++){
+                if(countFull[i] > 1){
+                    index++;
+                }
+            }
+            if(index === 1){ 
+                return [Number(this.matchesLength.indexOf(finalMove) + 1), finalMove];
+            }
+        }
+        return false;
     }
 }
 

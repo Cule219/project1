@@ -1,9 +1,17 @@
 
-let row1 = document.querySelector('.row1');
-let row2 = document.querySelector('.row2');
-let row3 = document.querySelector('.row3');
-let row4 = document.querySelector('.row4');
-let main = document.querySelector('#main');
+let row1        = document.querySelector('.row1');
+let row2        = document.querySelector('.row2');
+let row3        = document.querySelector('.row3');
+let row4        = document.querySelector('.row4');
+let main        = document.querySelector('#main');
+let player1     = document.querySelector('#player1');
+let player2     = document.querySelector('#player2');
+let reset       = document.querySelector('#reset');
+let row1BtnState = true;
+let row2BtnState = true;
+let row3BtnState = true;
+let row4BtnState = true;
+
 
 let li;
 let rows = [row1, row2, row3, row4]
@@ -18,7 +26,7 @@ function loadMatches(){
         while(element > 0 ){
             li = document.createElement('li');
             li.className = 'lili';
-            li.innerHTML = '<img src="./assets/matcho1.gif" alt="img">'
+            li.innerHTML = '<div class="item blue-grey" id="h2-1"></div>'
             rows[index].appendChild(li);
             element--;
         }
@@ -33,38 +41,64 @@ function removeMatches(row, count){
         elementsRow.removeChild(lili);
         count--;
     }
-    //lock the row that the match is at
 }
 
+row1.addEventListener('click', (e)=>{
+    if(row1BtnState == true) {
+        row2BtnState = false;
+        row3BtnState = false;
+        row4BtnState = false;
+        game.remove(1, 1);
+        removeMatches(1, 1);
+    }
+})
+row2.addEventListener('click', (e)=>{
+    if(row2BtnState == true) {
+        row1BtnState = false;
+        row3BtnState = false;
+        row4BtnState = false;
+        game.remove(2, 1);
+        removeMatches(2, 1);
+    }
 
-let row1Btn = document.querySelector('#btn-side1');
-let row2Btn = document.querySelector('#btn-side2');
-let row3Btn = document.querySelector('#btn-side3');
-let row4Btn = document.querySelector('#btn-side4');
-let newGame = document.querySelector('#new-game');
-let oponent = document.querySelector('#oponent-move');
-row1Btn.addEventListener('click', (e)=>{
-    game.remove(1, 1);
-    removeMatches(1, 1);
 })
-row2Btn.addEventListener('click', (e)=>{
-    game.remove(2, 1);
-    removeMatches(2, 1);
+row3.addEventListener('click', (e)=>{
+    if(row3BtnState == true) {
+        row1BtnState = false;
+        row2BtnState = false;
+        row4BtnState = false;
+        game.remove(3, 1);
+        removeMatches(3, 1);
+    }
 })
-row3Btn.addEventListener('click', (e)=>{
-    game.remove(3, 1);
-    removeMatches(3, 1);
+row4.addEventListener('click', (e)=>{
+    if(row4BtnState == true) {
+        row1BtnState = false;
+        row2BtnState = false;
+        row3BtnState = false;
+        game.remove(4, 1);
+        removeMatches(4, 1);
+    }
 })
-row4Btn.addEventListener('click', (e)=>{
-    game.remove(4, 1);
-    removeMatches(4, 1);
-})
-oponent.addEventListener('click', (e)=>{
+function resetStates(){
+    row1BtnState = true;
+    row2BtnState = true;
+    row3BtnState = true;
+    row4BtnState = true;
+}
+
+player1.addEventListener('click', (e)=>{
+    player2.removeAttribute('disabled');
+});
+player2.addEventListener('click', (e)=>{
+    resetStates();
     let [a, b] = computer.makeAMove();
-    console.log(a + ' : ' + b)
+    console.log(a + ' : ' + b);
     removeMatches(a, b);
-})
-newGame.addEventListener('click', (e)=>{
+    player2.setAttribute('disabled', 'true');
+});
+reset.addEventListener('click', (e)=>{
+    resetStates();
     game = new Game();
-
-})
+    game.setup();
+});

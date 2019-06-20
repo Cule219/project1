@@ -9,9 +9,28 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg text-light bg-dark">
+            <a class="navbar-brand" href="#">Nim</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" id="reset" href="#">Reset <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Mode</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Instructions</a>
+                </li>
+                </ul>
+            </div>
+    </nav>
     <div class="container">
         <div class="row">
-            <div class="main col-9" id="main">
+            <div class="main col-12" id="main">
                 <div class="row d-flex justify-content-around">
                     <ul class="row1"></ul>
                 </div>
@@ -24,19 +43,22 @@
                 <div class="row d-flex justify-content-around">
                     <ul class="row4"></ul>
                 </div>
+                
             </div>
-            <div class="aside col-3 ">
-                <div class="row d-flex justify-content-around "><button class="row btn-side" id="btn-side1">Row1</button></div>
-                <div class="row d-flex justify-content-around"><button class="row btn-side" id="btn-side2">Row2</button></div>
-                <div class="row d-flex justify-content-around"><button class="row btn-side" id="btn-side3">Row3</button></div>
-                <div class="row d-flex justify-content-around"><button class="row btn-side" id="btn-side4">Row4</button></div>
-            </div>
+            
         </div>
-        <div class="under row d-flex justify-content-around">
-            <button class="row btn-side" id="new-game">New Game</button>
-            <button class="row btn-side" id="oponent-move">Oponent Move</button>
+        <div class = "under">
+            <button class="btn-side" id="player1">Player1</button>
+            <button class="btn-side" id="player2">Player2</button>
         </div>
     </div>
+    <footer class="page-footer footer-expand-lg text-light bg-dark font-small ">
+        <div class="footer-copyright text-center py-3">© 2019 Ironhack:
+            <a href="https://github.com/Cule219/project1.git"><img src="./assets/foundation_social-github_flat-circle-white-on-blue_512x512.png" alt="Github"/></a>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="src/jquery-3.4.1.min.js"></script>
     <script src="src/constants.js"></script>
     <script src="src/computer.js"></script>
     <script src="src/dom.js"></script>
