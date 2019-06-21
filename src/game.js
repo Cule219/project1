@@ -21,7 +21,6 @@ class Game {
             }
         }
         if(count <= 1){
-            btnState = [false,false,false,false];
             player2.setAttribute('disabled', 'true');
             if(who == 'C'){
                 Swal.fire({
@@ -59,6 +58,7 @@ class Game {
                     button: "Congratz",
                 });
             }
+            btnState = [false,false,false,false];
         }
         
         

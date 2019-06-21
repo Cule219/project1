@@ -31,6 +31,7 @@ modeBtn.addEventListener('click', e => {
 function multiplay(){
     player2.setAttribute('disabled', true);
     player1.innerHTML = "Player1";
+    player1.classList = "your-turn";
     player2.innerHTML = "Player2";
     //input of names should go in here
 }
@@ -57,17 +58,27 @@ function removeSingleElement(elementsRow, row){
 function removeMatches(row, count, c){
     let lili;
     let elementsRow = document.querySelector('.row' + row);
+    let timer = count*200;
     while(count > 0){
         if(c){
             setTimeout(e=>{
                 removeSingleElement(elementsRow, row);
-            }, Number(200 + 500/count));
+                if(count <= 1) {
+                    setYourTurn();
+                }
+            }, Number(timer/count));
+            timer/=count;
         }
         else{
             removeSingleElement(elementsRow, row);
         }
         count--;
     }
+}
+function setYourTurn(){
+    setTimeout(()=>{
+        player1.classList = "your-turn";
+    },200);
 }
 function played(btn){
     btnState        = [false,false,false,false];
@@ -76,17 +87,17 @@ function played(btn){
     removeMatches(Number(btn+1), 1);
     if(!mode) {
         player2.removeAttribute('disabled');
+        player1.classList = 'btn-side'
     }
     else if(mode && player == 1) {
         player2.removeAttribute('disabled');
+        player1.classList = 'btn-side'
     }
     else if(mode && player == 2){
         player1.removeAttribute('disabled');
     }
 
 }
-
-
 function resetStates(){
     btnState = [true, true, true, true];
 }
@@ -105,10 +116,10 @@ player2.addEventListener('click', (e)=>{
         resetStates();
     }
     else{
+        resetStates();
         let [a, b] = computer.makeAMove();
         removeMatches(a, b, true);
         player2.setAttribute('disabled', 'true');
-        resetStates();
     }
 });
 
@@ -148,6 +159,7 @@ instr.addEventListener('click', (e)=>{
 })
 function singleplay(){
     player1.setAttribute('disabled', 'true');
+    setYourTurn();
     player2.setAttribute('disabled', 'false');
     player2.innerHTML = "Computer";
     Swal.fire({

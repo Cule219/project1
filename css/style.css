@@ -87,3 +87,16 @@ li {
     color:white;
 }
 
+.your-turn {
+    height: 80%;
+    font-size: 1.6em;
+    width: 250px;   
+    border: 1px black solid;
+    border-radius: 25px;  
+    justify-content: center;
+    align-items: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background: darkgreen;
+    color: rgb(255, 255, 255);
+}
