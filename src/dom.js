@@ -50,13 +50,22 @@ function loadMatches(){
         }
     });
 }
-
-function removeMatches(row, count){
+function removeSingleElement(elementsRow, row){
+    lili = document.querySelector(`.row${row} > .lili`);
+    elementsRow.removeChild(lili);
+}
+function removeMatches(row, count, c){
     let lili;
     let elementsRow = document.querySelector('.row' + row);
     while(count > 0){
-        lili = document.querySelector(`.row${row} > .lili`);
-        elementsRow.removeChild(lili);
+        if(c){
+            setTimeout(e=>{
+                removeSingleElement(elementsRow, row);
+            }, Number(200 + 500/count));
+        }
+        else{
+            removeSingleElement(elementsRow, row);
+        }
         count--;
     }
 }
@@ -96,11 +105,10 @@ player2.addEventListener('click', (e)=>{
         resetStates();
     }
     else{
-        resetStates();
-        player2.setAttribute('disabled', 'true');
         let [a, b] = computer.makeAMove();
-        removeMatches(a, b);
+        removeMatches(a, b, true);
         player2.setAttribute('disabled', 'true');
+        resetStates();
     }
 });
 
@@ -181,21 +189,3 @@ function singleplay(){
         }
     });
 }
-
-
-/*
-swal(
-        "Nim",`
-    The traditional Nim-game (aka Marienbad-game) consists of four rows of 1, 3, 5 and 7 matchsticks (or any other objects). Two players take any number of matchsticks from one row alternately. The one, who takes the last matchstick loses. 
-    
-    
-    
-    Your name please:`
-    , {
-        content: "input",
-      })
-      .then((value) => {
-        if(value.length > 0)player1.innerHTML = value;
-      })
-
-*/
