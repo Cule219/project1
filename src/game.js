@@ -25,7 +25,8 @@ class Game {
             player2.setAttribute('disabled', 'true');
             if(who == 'C'){
                 Swal.fire({
-                    title: 'Good game, one more try?',
+                    html: '<h1 style="color:#343A40">Computer wins :(</h1><br><h3 style="color:#343A40">Good game tho, one more try?</h3>',
+                    color: 'blue',
                     width: 600,
                     padding: '3em',
                     background: 'rgba(200,200,200,0.6) url(./assets/il_794xN.874599933_kz7n.jpg)',
@@ -54,7 +55,7 @@ class Game {
                     title:  `Player${player} won!`,
                     text:   "Woopie",
                     icon:   "success",
-                    background: 'rgba(200,200,200,0.6) url( ./assets/il_794xN.874599933_kz7n.jpg)',
+                    //background: 'rgba(200,200,200,0.6) url(./assets/il_794xN.874599933_kz7n.jpg)',
                     button: "Congratz",
                 });
             }
