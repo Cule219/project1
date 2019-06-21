@@ -1,4 +1,3 @@
-
 let name1       = "Player1";
 let name2       = "Computer";
 let mode        = false;
@@ -140,9 +139,52 @@ instr.addEventListener('click', (e)=>{
     `Nim is a mathematical game of strategy in which two players take turns removing (i.e., nimming) objects from distinct heaps or piles. On each turn, a player must remove at least one object, and may remove any number of objects provided they all come from the same heap/pile. The goal of the game is to avoid taking the last object.`);
 })
 function singleplay(){
-    player1.setAttribute('disabled', true);
+    player1.setAttribute('disabled', 'true');
+    player2.setAttribute('disabled', 'false');
     player2.innerHTML = "Computer";
-    swal(
+    Swal.fire({
+        title: 'Welcome to Nim!',
+        html:
+          `The traditional Nim-game (aka Marienbad-game) consists of four rows of 1, 3, 5 and 7
+           matchsticks (or any other objects). Two players take any number of matchsticks from 
+           one row alternately. The one, who takes the last matchstick loses. <br/><br/>
+          ` +
+          '<button id="multi-select" class="btn btn-warning">' +
+            'Multiplayer' +
+          '</button>'+
+          '<button id="single-select" class="btn btn-danger">' +
+            'Singleplayer' +
+          '</button><br/>',
+        onBeforeOpen: () => {
+            const content = Swal.getContent()
+            const $ = content.querySelector.bind(content)
+            const multiSelect = $('#multi-select')
+            const singleSelect = $('#single-select')
+            multiSelect.addEventListener('click', (e) => {
+                mode = true;
+            })
+            singleSelect.addEventListener('click', (e) => {
+                mode = false;
+            })
+        }
+      }).then( () =>{
+        if(mode==true)newGame();
+        else{
+            swal(
+                "Nim!",`Your name please:`
+            , {
+                content: "input",
+              })
+              .then((value) => {
+                if(value.length > 0)player1.innerHTML = value;
+              })
+        }
+    });
+}
+
+
+/*
+swal(
         "Nim",`
     The traditional Nim-game (aka Marienbad-game) consists of four rows of 1, 3, 5 and 7 matchsticks (or any other objects). Two players take any number of matchsticks from one row alternately. The one, who takes the last matchstick loses. 
     
@@ -155,25 +197,5 @@ function singleplay(){
       .then((value) => {
         if(value.length > 0)player1.innerHTML = value;
       })
-}
-/*btnLeft.addEventListener('click', function () {
-    if(state) {
-        btnLeft.innerHTML = 'STOP';
-        btnLeft.classList = 'btn stop' 
-        
-        btnRight.innerHTML = 'SPLIT'
-        btnRight.classList = 'btn split'
-        chronometer.startClick();
-    }
-    else {
-        btnLeft.innerHTML = 'START';
-        btnLeft.classList = 'btn start'
 
-        btnRight.innerHTML = 'RESET'
-        btnRight.classList = 'btn reset'
-        chronometer.stopClick();
-    }
-    state = !state;
-});*/
-
-
+*/

@@ -28,7 +28,7 @@ class Game {
                     title: 'Good game, one more try?',
                     width: 600,
                     padding: '3em',
-                    background: 'rgba(200,200,200,0.6)',
+                    background: 'rgba(200,200,200,0.6) url(./assets/il_794xN.874599933_kz7n.jpg)',
                     backdrop: `
                         rgba(0,0,123,0.4)
                         url("https://66.media.tumblr.com/tumblr_lrbu1l9BJk1qgzxcao1_250.gif")
@@ -38,8 +38,13 @@ class Game {
             }
             else if(!mode){
                 swal({
-                    title:  `You won ${player1.innerHTML}!`,
-                    text:   "A reematch perhaps?",
+                    title:  `Sweet!!!`,
+                    text:   `You won ${player1.innerHTML}!`,
+                    imageUrl: 'https://source.unsplash.com/random',
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Random image',
+                    animation: false,
                     icon:   "success",
                     button: "Aww yiss!",
                 });
@@ -49,8 +54,8 @@ class Game {
                     title:  `Player${player} won!`,
                     text:   "Woopie",
                     icon:   "success",
+                    background: 'rgba(200,200,200,0.6) url( ./assets/il_794xN.874599933_kz7n.jpg)',
                     button: "Congratz",
-                    background: 'url(./assets/il_794xN.874599933_kz7n.jpg)'
                 });
             }
         }
