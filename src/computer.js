@@ -1,15 +1,17 @@
 class Computer{
+
     constructor(){
         this.matchesLength = [game.matches[0].length,game.matches[1].length,game.matches[2].length,game.matches[3].length];
         this.pairs = [0, 0 ,0]
         this.parity = [];
         this.testParity = []
     }
-    setup(){
-    }
+
+    //this gets the length of each row
     getMatchesLength(){
         this.matchesLength = [game.matches[0].length,game.matches[1].length,game.matches[2].length,game.matches[3].length];
     }
+
     getParity() {
         this.parity = [];
         this.pairs = [0, 0 ,0];
@@ -28,6 +30,8 @@ class Computer{
             this.parity.push(row);
         }
     }   
+
+
     findRow(unpairedSize, countOfMatches){
         unpairedSize = this.exists(unpairedSize);
         let i = Math.floor(Math.random()*game.matches.length);
@@ -39,6 +43,7 @@ class Computer{
         }
         return [Number(i+1), unpairedSize];//returning row index and size 
     }
+
     exists(unpairedSize){
         let exists = false;
         while(exists == false) {
@@ -51,6 +56,8 @@ class Computer{
         }
         return unpairedSize;
     }
+
+    
     makeAMove(){
         this.getParity();
         this.getMatchesLength();

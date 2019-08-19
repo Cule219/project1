@@ -15,6 +15,7 @@ let modeBtn     = document.querySelector('#mode');
 let btnState = [true, true, true, true];
 let rows = [row1, row2, row3, row4]
 let li;
+
 function selectMode(){
     if(mode == false) {
         singleplay();
@@ -145,7 +146,9 @@ row4.addEventListener('click', (e)=>{
 })
 
 reset.addEventListener('click', (e)=>{
-    newGame();
+    resetStates();
+    game = new Game();
+    game.setup();
 });
 function newGame(){
     selectMode();
@@ -155,12 +158,18 @@ function newGame(){
 }
 instr.addEventListener('click', (e)=>{
     swal('How to play',
-    `Nim is a mathematical game of strategy in which two players take turns removing (i.e., nimming) objects from distinct heaps or piles. On each turn, a player must remove at least one object, and may remove any number of objects provided they all come from the same heap/pile. The goal of the game is to avoid taking the last object.`);
-})
+    `About: Nim is a mathematical game of strategy in which two players take turns removing (i.e., nimming) objects from distinct heaps or piles. On each turn, a player must remove at least one object, and may remove any number of objects provided they all come from the same heap/pile. The goal of the game is to avoid taking the last object.
+    
+    Gameplay: Green Button indicates players turn. Taking any element will allow you to pass turn to your opponent, also taking element from one stack will lock other stacks.
+    When playing agains computer, you are allowed to pass your turn to your opponent initaly, making it so that computer takes first move.(Pro-tip do this!)
+    `);
+});
+
+//Init a new singleplay game
 function singleplay(){
     player1.setAttribute('disabled', 'true');
     setYourTurn();
-    player2.setAttribute('disabled', 'false');
+    player2.removeAttribute('disabled');
     player2.innerHTML = "Computer";
     Swal.fire({
         title: 'Welcome to Nim!',
