@@ -3,7 +3,7 @@ class Game {
     
     //remove hard code for matches eventualy
     constructor(){
-        this.matches = [[1,1,1],[1,1,1],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1]];
+        this.matches = [[1],[1,1,1],[1,1,1,1,1],[1,1,1,1,1,1,1]];
         this.matchesLength = [this.matches[0].length,this.matches[1].length,this.matches[2].length,this.matches[3].length];
     }
     setup(){
